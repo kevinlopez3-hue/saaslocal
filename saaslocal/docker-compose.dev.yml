@@ -1,0 +1,45 @@
+version: '3.9'
+
+# ============================================================
+# docker-compose.dev.yml — Override para desarrollo local
+# Uso: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+#
+# Diferencias vs producción:
+#  - Backend con nodemon (hot reload)
+#  - Frontend con Vite dev server (HMR)
+#  - Volúmenes de código montados en vivo
+#  - Puertos del frontend en 5173
+# ============================================================
+
+services:
+
+  postgres:
+    ports:
+      - "5432:5432"   # exponer en dev para conectarse con DBeaver/TablePlus
+
+  backend:
+    build:
+      context: ./backend
+      target: base      # usar etapa base (no la de producción)
+    command: npx nodemon src/index.js
+    environment:
+      NODE_ENV: development
+      LOG_LEVEL: debug
+    volumes:
+      - ./backend:/app
+      - /app/node_modules   # excluir node_modules del bind mount
+    ports:
+      - "4000:4000"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    environment:
+      VITE_API_URL: http://localhost:4000/api/v1
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    command: npm run dev -- --host 0.0.0.0

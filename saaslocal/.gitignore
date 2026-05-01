@@ -1,0 +1,28 @@
+# ── Entornos ──────────────────────────────────────────────
+.env
+.env.local
+.env.production
+
+# ── Node ──────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+
+# ── Build ─────────────────────────────────────────────────
+dist/
+build/
+
+# ── Logs ──────────────────────────────────────────────────
+logs/
+*.log
+
+# ── OS ────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Editor ────────────────────────────────────────────────
+.vscode/settings.json
+.idea/
+
+# ── Docker ────────────────────────────────────────────────
+# (no ignorar docker-compose, sí ignorar overrides locales)
+docker-compose.override.yml

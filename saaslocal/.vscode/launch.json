@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "🚀 Backend (Node.js)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/backend/src/index.js",
+      "cwd": "${workspaceFolder}/backend",
+      "envFile": "${workspaceFolder}/backend/.env",
+      "console": "integratedTerminal",
+      "restart": true,
+      "runtimeExecutable": "nodemon",
+      "runtimeArgs": ["--inspect"],
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "🐛 Attach to Node",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "restart": true,
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ]
+}

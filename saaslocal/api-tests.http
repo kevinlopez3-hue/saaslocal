@@ -1,0 +1,127 @@
+### SaasLocal API — Test con REST Client (VSCode)
+### Extensión requerida: humao.rest-client
+### Uso: Haz clic en "Send Request" sobre cualquier bloque
+
+@baseUrl = http://localhost:4000/api/v1
+@token = PEGAR_TOKEN_AQUI
+
+# ──────────────────────────────────────────────────────────
+### 1. Login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "carlos@esperanza.com",
+  "password": "Admin1234!"
+}
+
+# ──────────────────────────────────────────────────────────
+### 2. Perfil del usuario autenticado
+GET {{baseUrl}}/auth/me
+Authorization: Bearer {{token}}
+
+# ──────────────────────────────────────────────────────────
+### 3. Dashboard
+GET {{baseUrl}}/dashboard
+Authorization: Bearer {{token}}
+
+# ──────────────────────────────────────────────────────────
+### 4. Listar productos
+GET {{baseUrl}}/productos
+Authorization: Bearer {{token}}
+
+# ──────────────────────────────────────────────────────────
+### 5. Crear producto
+POST {{baseUrl}}/productos
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nombre": "Maizena 500g",
+  "categoria_id": 4,
+  "precio_costo": 2500,
+  "precio_venta": 4200,
+  "codigo_barras": "7702462200099",
+  "unidad": "und",
+  "stock_inicial": 30,
+  "stock_minimo": 5
+}
+
+# ──────────────────────────────────────────────────────────
+### 6. Listar clientes
+GET {{baseUrl}}/clientes
+Authorization: Bearer {{token}}
+
+# ──────────────────────────────────────────────────────────
+### 7. Crear cliente
+POST {{baseUrl}}/clientes
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nombre": "Doña Carmen López",
+  "telefono": "3105556677",
+  "direccion": "Calle 10 #3-40",
+  "limite_credito": 80000
+}
+
+# ──────────────────────────────────────────────────────────
+### 8. Registrar venta en efectivo
+POST {{baseUrl}}/ventas
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "items": [
+    { "producto_id": 1, "cantidad": 2, "precio_venta": 1200 },
+    { "producto_id": 5, "cantidad": 1, "precio_venta": 4200 }
+  ],
+  "metodo_pago_id": 1,
+  "monto_pagado": 10000
+}
+
+# ──────────────────────────────────────────────────────────
+### 9. Registrar venta a crédito (fiado)
+POST {{baseUrl}}/ventas
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "items": [
+    { "producto_id": 2, "cantidad": 1, "precio_venta": 5000 },
+    { "producto_id": 10, "cantidad": 2, "precio_venta": 3800 }
+  ],
+  "metodo_pago_id": 5,
+  "cliente_id": 3,
+  "monto_pagado": 0,
+  "estado": "credito"
+}
+
+# ──────────────────────────────────────────────────────────
+### 10. Abonar deuda cliente
+POST {{baseUrl}}/clientes/3/abonar
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "monto": 15000
+}
+
+# ──────────────────────────────────────────────────────────
+### 11. Historial de ventas (últimas 50)
+GET {{baseUrl}}/ventas
+Authorization: Bearer {{token}}
+
+# ──────────────────────────────────────────────────────────
+### 12. Categorías
+GET {{baseUrl}}/categorias
+Authorization: Bearer {{token}}
+
+# ──────────────────────────────────────────────────────────
+### 13. Métodos de pago
+GET {{baseUrl}}/metodos-pago
+Authorization: Bearer {{token}}
+
+# ──────────────────────────────────────────────────────────
+### 14. Health check
+GET http://localhost:4000/health

@@ -1,0 +1,35 @@
+{
+  "recommendations": [
+    // ── JavaScript / Node ────────────────────────────────
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "christian-kohler.npm-intellisense",
+
+    // ── React ─────────────────────────────────────────────
+    "dsznajder.es7-react-js-snippets",
+    "burkeholland.simple-react-snippets",
+
+    // ── Tailwind ──────────────────────────────────────────
+    "bradlc.vscode-tailwindcss",
+
+    // ── PostgreSQL ────────────────────────────────────────
+    "ckolkman.vscode-postgres",
+    "mtxr.sqltools",
+    "mtxr.sqltools-driver-pg",
+
+    // ── Docker ────────────────────────────────────────────
+    "ms-azuretools.vscode-docker",
+
+    // ── Git ───────────────────────────────────────────────
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+
+    // ── Utilidades ────────────────────────────────────────
+    "mikestead.dotenv",
+    "christian-kohler.path-intellisense",
+    "usernamehw.errorlens",
+    "PKief.material-icon-theme",
+    "aaron-bond.better-comments",
+    "humao.rest-client"    // probar la API directamente desde VSCode
+  ]
+}
