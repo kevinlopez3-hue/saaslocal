@@ -4,11 +4,12 @@ const { authenticate } = require('../middlewares/auth');
 const { body } = require('express-validator');
 
 // Controllers
-const Auth       = require('../controllers/authController');
-const Productos  = require('../controllers/productosController');
-const Ventas     = require('../controllers/ventasController');
-const Clientes   = require('../controllers/clientesController');
-const Dashboard  = require('../controllers/dashboardController');
+const Auth        = require('../controllers/authController');
+const Productos   = require('../controllers/productosController');
+const Ventas      = require('../controllers/ventasController');
+const Clientes    = require('../controllers/clientesController');
+const Dashboard   = require('../controllers/dashboardController');
+const Proveedores = require('../controllers/proveedoresController');
 
 // ── Auth (pública) ───────────────────────────────────────────
 router.post('/auth/login', Auth.login);
@@ -73,5 +74,17 @@ router.get('/metodos-pago', authenticate, async (req, res, next) => {
     res.json({ metodos: rows });
   } catch (err) { next(err); }
 });
+
+// ── Proveedores ───────────────────────────────────────────────
+const proveedorRules = [
+  body('nombre').notEmpty().withMessage('El nombre es requerido').trim(),
+  body('email').optional({ checkFalsy: true }).isEmail().withMessage('Email inválido'),
+  body('nit').optional().trim(),
+];
+router.get   ('/proveedores',      authenticate, Proveedores.list);
+router.get   ('/proveedores/:id',  authenticate, Proveedores.getOne);
+router.post  ('/proveedores',      authenticate, proveedorRules, Proveedores.create);
+router.put   ('/proveedores/:id',  authenticate, proveedorRules, Proveedores.update);
+router.delete('/proveedores/:id',  authenticate, Proveedores.remove);
 
 module.exports = router;

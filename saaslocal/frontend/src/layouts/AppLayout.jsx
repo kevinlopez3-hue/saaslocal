@@ -3,15 +3,16 @@ import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import {
   LayoutDashboard, Package, ShoppingCart, Users,
-  Store, LogOut, ChevronRight, Scan
+  Store, LogOut, ChevronRight, Scan, Truck
 } from 'lucide-react';
 
 const NAV = [
-  { to: '/',         icon: LayoutDashboard, label: 'Dashboard',  end: true },
-  { to: '/pos',      icon: Scan,            label: 'Nueva Venta' },
-  { to: '/ventas',   icon: ShoppingCart,    label: 'Ventas' },
-  { to: '/productos',icon: Package,         label: 'Productos' },
-  { to: '/clientes', icon: Users,           label: 'Clientes' },
+  { to: '/',            icon: LayoutDashboard, label: 'Dashboard',   end: true },
+  { to: '/pos',         icon: Scan,            label: 'Nueva Venta' },
+  { to: '/ventas',      icon: ShoppingCart,    label: 'Ventas' },
+  { to: '/productos',   icon: Package,         label: 'Productos' },
+  { to: '/clientes',    icon: Users,           label: 'Clientes' },
+  { to: '/proveedores', icon: Truck,           label: 'Proveedores' },
 ];
 
 export default function AppLayout() {

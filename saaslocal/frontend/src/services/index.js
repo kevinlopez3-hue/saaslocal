@@ -31,6 +31,15 @@ export const clientesService = {
   abonar: (id, monto) => api.post(`/clientes/${id}/abonar`, { monto }).then(r => r.data),
 };
 
+// ── Proveedores ───────────────────────────────────────────────
+export const proveedoresService = {
+  list:   (params) => api.get('/proveedores', { params }).then(r => r.data.proveedores),
+  getOne: (id)     => api.get(`/proveedores/${id}`).then(r => r.data.proveedor),
+  create: (data)   => api.post('/proveedores', data).then(r => r.data),
+  update: (id, d)  => api.put(`/proveedores/${id}`, d).then(r => r.data),
+  delete: (id)     => api.delete(`/proveedores/${id}`).then(r => r.data),
+};
+
 // ── Catálogos ─────────────────────────────────────────────────
 export const catalogosService = {
   categorias:   () => api.get('/categorias').then(r => r.data.categorias),
